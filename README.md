@@ -5,10 +5,11 @@ DMA](https://veos-sxarr-nec.github.io/libsysve/group__vedma.html).
 
 ## Usage of VE DMA
 
+VE DMA can transfer data between System V Shared Memory (shm) on VH and local memory on VE.
 
 ### 1. Create SHM on VH.
 
-You have to create System V Shared Memory (shm) with huge table.
+You have to create shm with huge table before using VE DMA.
 
 Example:
 
@@ -81,6 +82,17 @@ Transfer size have to ve less than 128MB.
 ```
 
 ## Example
+
+- [[mkshm.c]]: creates shm on VH
+- [[dma.c]]: transfers data using VE DMA
+- [[rdshm.c]]: print data on shm
+
+```
+% ./mkshm
+% ipcs # you see the create shm with key=0x19761215
+% ./dma
+% ./rdshm
+% ipcrm -M 0x19761215 # remove the shm.
 
 ## References
 
