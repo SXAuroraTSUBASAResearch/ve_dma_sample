@@ -7,6 +7,14 @@ DMA](https://veos-sxarr-nec.github.io/libsysve/group__vedma.html).
 
 VE DMA can transfer data between System V Shared Memory (shm) on VH and local memory on VE.
 
+### 0. Enable Huge Table on VH
+
+To use VE DMA you have to enable huge pages on VH. Here is the example to enable 1024 2MB pages. 
+
+```
+root% echo 1024 > /proc/sys/vm/nr_hugepages
+```
+
 ### 1. Create SHM on VH
 
 You have to create shm with huge table before using VE DMA.
