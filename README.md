@@ -56,10 +56,6 @@ The default page size of VE is 64B. Then you have to use 64B aligned buffer.
 
 ```
     uint64_t vehva_ve = ve_register_mem_to_dmaatb(vemva, size);
-    if (vehva_ve == (uint64_t)-1) {
-        perror("ve_register_mem_to_dmaatb");
-        return 1;
-    }
 ```
 
 ### 6. Post DMA
