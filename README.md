@@ -96,7 +96,7 @@ ve_unregister_mem_from_dmaatb(vehva_ve);
 ```
 % make
 % ./mkshm.x86
-% ipcs # you see the create shm with key=0x19761215
+% ipcs # you see the created shm with key=0x19761215
 % ./dma.ve
 % ./rdshm.x86
 % ipcrm -M 0x19761215 # remove the shm.
