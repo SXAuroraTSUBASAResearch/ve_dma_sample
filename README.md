@@ -20,7 +20,7 @@ Example:
 ```
 
 
-### 2. Attach the shm created on VH and register it to DMAATB on VE.
+### 2. Attach the shm created on VH and register it to DMAATB on VE
 
 The DMA address translation buffer (DMAATB) is used for address translation from a VE
 host virtual address to a VE memory. 
