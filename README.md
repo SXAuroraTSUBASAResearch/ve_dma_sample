@@ -1,8 +1,12 @@
 # VE DMA sample
 
+This repository include an exmple to show how to use [VE
+DMA](https://veos-sxarr-nec.github.io/libsysve/group__vedma.html).
+
 ## Usage of VE DMA
 
-1. Create SHM on VH.
+
+### 1. Create SHM on VH.
 
 You have to create System V Shared Memory (shm) with huge table.
 
@@ -15,7 +19,7 @@ Example:
 ```
 
 
-2. Attach the shm created on VH and register it to DMAATB on VE.
+### 2. Attach the shm created on VH and register it to DMAATB on VE.
 
 ```
     int key = 0x19761215;
@@ -26,13 +30,13 @@ Example:
     void* p = vh_shmat(shmid, NULL, 0, &vehva_vh);
 ```
 
-3. Init VE DMA.
+### 3. Init VE DMA.
 
 ```
     ve_dma_init();
 ```
 
-4. Allocate 64 byte aligned VE memory
+### 4. Allocate 64 byte aligned VE memory
 
 ```
     size_t align = 64 * 1024 * 1024;
@@ -40,7 +44,7 @@ Example:
     posix_memalign(&vemva, align, size);
 ```
 
-5. Register VE memory to DMAATB.
+### 5. Register VE memory to DMAATB.
 
     uint64_t vehva_ve = ve_register_mem_to_dmaatb(vemva, size);
     if (vehva_ve == (uint64_t)-1) {
@@ -48,7 +52,7 @@ Example:
         return 1;
     }
 
-6. Post DMA.
+### 6. Post DMA.
 
 Transfer size have to ve less than 128MB.
 
@@ -63,14 +67,14 @@ Transfer size have to ve less than 128MB.
     ve_dma_post_wait((uint64_t)vehva_vh, vehva_ve, transfer_size);
 ```
 
-7. Dettach the shm and unregister VE memory from DMAATB.
+### 7. Dettach the shm and unregister VE memory from DMAATB.
 
 ```
     vh_shmdt(p);
     ve_unregister_mem_from_dmaatb(vehva_ve);
 ```
 
-8. Remove the shm.
+### 8. Remove the shm.
 
 ```
    % ipcrm -M 0x19761215
