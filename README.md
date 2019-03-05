@@ -76,14 +76,14 @@ Transfer size have to be less than 128MB.
 ### 7. Dettach the shm and unregister VE memory from DMAATB
 
 ```
-    vh_shmdt(p);
-    ve_unregister_mem_from_dmaatb(vehva_ve);
+vh_shmdt(p);
+ve_unregister_mem_from_dmaatb(vehva_ve);
 ```
 
 ### 8. Remove the shm
 
 ```
-   % ipcrm -M 0x19761215
+% ipcrm -M 0x19761215
 ```
 
 ## Example
