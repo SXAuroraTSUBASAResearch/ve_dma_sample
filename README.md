@@ -98,6 +98,7 @@ Transfer size have to be less than 128MB.
 
 
 ```
+% make
 % ./mkshm
 % ipcs # you see the create shm with key=0x19761215
 % ./dma
