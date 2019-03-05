@@ -52,7 +52,7 @@ The default page size of VE is 64B. Then you have to use 64B aligned buffer.
     posix_memalign(&vemva, align, size);
 ```
 
-### 5. Register VE memory to DMAATB.
+### 5. Register VE memory to DMAATB
 
 ```
     uint64_t vehva_ve = ve_register_mem_to_dmaatb(vemva, size);
@@ -62,7 +62,7 @@ The default page size of VE is 64B. Then you have to use 64B aligned buffer.
     }
 ```
 
-### 6. Post DMA.
+### 6. Post DMA
 
 Transfer size have to be less than 128MB.
 
@@ -77,14 +77,14 @@ Transfer size have to be less than 128MB.
     ve_dma_post_wait((uint64_t)vehva_vh, vehva_ve, transfer_size);
 ```
 
-### 7. Dettach the shm and unregister VE memory from DMAATB.
+### 7. Dettach the shm and unregister VE memory from DMAATB
 
 ```
     vh_shmdt(p);
     ve_unregister_mem_from_dmaatb(vehva_ve);
 ```
 
-### 8. Remove the shm.
+### 8. Remove the shm
 
 ```
    % ipcrm -M 0x19761215
