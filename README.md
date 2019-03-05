@@ -99,10 +99,10 @@ Transfer size have to be less than 128MB.
 
 ```
 % make
-% ./mkshm
+% ./mkshm.x86
 % ipcs # you see the create shm with key=0x19761215
-% ./dma
-% ./rdshm
+% ./dma.ve
+% ./rdshm.x86
 % ipcrm -M 0x19761215 # remove the shm.
 ```
 
