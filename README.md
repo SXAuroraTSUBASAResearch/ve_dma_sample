@@ -7,7 +7,7 @@ DMA](https://veos-sxarr-nec.github.io/libsysve/group__vedma.html).
 
 VE DMA can transfer data between System V Shared Memory (shm) on VH and local memory on VE.
 
-### 1. Create SHM on VH.
+### 1. Create SHM on VH
 
 You have to create shm with huge table before using VE DMA.
 
@@ -22,6 +22,11 @@ Example:
 
 ### 2. Attach the shm created on VH and register it to DMAATB on VE.
 
+The DMA address translation buffer (DMAATB) is used for address translation from a VE
+host virtual address to a VE memory. 
+
+See details on SX-Aurora TSUBASA Architecture Manual (but not yet publically avaiable).
+
 ```
     int key = 0x19761215;
     size_t size = 256 * 1024 * 1024;
@@ -31,13 +36,15 @@ Example:
     void* p = vh_shmat(shmid, NULL, 0, &vehva_vh);
 ```
 
-### 3. Init VE DMA.
+### 3. Init VE DMA
 
 ```
     ve_dma_init();
 ```
 
 ### 4. Allocate 64 byte aligned VE memory
+
+The default page size of VE is 64B. Then you have to use 64B aligned buffer.
 
 ```
     size_t align = 64 * 1024 * 1024;
@@ -47,15 +54,17 @@ Example:
 
 ### 5. Register VE memory to DMAATB.
 
+```
     uint64_t vehva_ve = ve_register_mem_to_dmaatb(vemva, size);
     if (vehva_ve == (uint64_t)-1) {
         perror("ve_register_mem_to_dmaatb");
         return 1;
     }
+```
 
 ### 6. Post DMA.
 
-Transfer size have to ve less than 128MB.
+Transfer size have to be less than 128MB.
 
 
 ```
@@ -87,12 +96,14 @@ Transfer size have to ve less than 128MB.
 - [[dma.c]]: transfers data using VE DMA
 - [[rdshm.c]]: print data on shm
 
+
 ```
 % ./mkshm
 % ipcs # you see the create shm with key=0x19761215
 % ./dma
 % ./rdshm
 % ipcrm -M 0x19761215 # remove the shm.
+```
 
 ## References
 
