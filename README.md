@@ -1,6 +1,6 @@
 # VE DMA sample
 
-This repository include an exmple to show how to use [VE
+This repository includes an exmple to show how to use [VE
 DMA](https://veos-sxarr-nec.github.io/libsysve/group__vedma.html).
 
 ## Usage of VE DMA
