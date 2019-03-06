@@ -50,9 +50,9 @@ See details on SX-Aurora TSUBASA Architecture Manual (but not yet publically ava
     ve_dma_init();
 ```
 
-### 4. Allocate 64 byte aligned VE memory
+### 4. Allocate 64MB aligned VE memory
 
-The default page size of VE is 64B. Then you have to use 64B aligned buffer.
+The default page size of VE is 64MB. Then you have to use 64B aligned buffer.
 
 ```
     size_t align = 64 * 1024 * 1024;
