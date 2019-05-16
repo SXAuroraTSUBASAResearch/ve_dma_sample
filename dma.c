@@ -50,9 +50,11 @@ int main(int argc, char* argv[])
     // read
     int ret = ve_dma_post_wait(vehva_ve, (uint64_t)vehva_vh, transfer_size);
     fprintf(stderr, "ve_dma_post_wait(read): ret=%d\n", ret);
-    fprintf(stderr, "%d\n", *(int*)vemva);
+    fprintf(stderr, "first 4B in the buffer is %d\n", *(int*)vemva);
 
     (*(int*)vemva)++;
+
+    fprintf(stderr, "write %d to the buffer\n", *(int*)vemva);
 
     // write
     ret = ve_dma_post_wait((uint64_t)vehva_vh, vehva_ve, transfer_size);
